@@ -33,3 +33,6 @@ Logar no meu terminal uma LISTA DE FRUTAS
     Log To Console     ${FRUTAS} ${nova_fruta}
     Log Many           ${FRUTAS}
     Log To Console     ${nova_fruta} ${outra_fruta}
+    Log To Console     ${FRUTAS[0]}
+    Log To Console     ${FRUTAS[1]}
+    Log To Console     ${FRUTAS[2]}
