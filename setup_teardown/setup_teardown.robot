@@ -1,0 +1,47 @@
+*** Settings ***
+Documentation           Testes para setup e teardown
+
+Suite Setup    KW para executar no Setup da Suite
+Test Setup    KW para executar no Setup de cada Teste
+Suite Teardown    KW para executar no Teardown da Suite
+Test Teardown    KW para executar no Teardown de cada Teste
+
+*** Test Cases ***
+Teste de somar dois números
+    ${RESULTADO_SOMA}    Somar dois números        1    2
+    Log To Console    O Resultado da soma é: ${RESULTADO_SOMA}
+    ${RESULTADO_SOMA}    Somar dois números        3    4
+    Log To Console    O Resultado da soma é: ${RESULTADO_SOMA}
+
+Teste de somar dois números embutidos
+    ${RESULTADO_SOMA}    Somar os números "3" e "6"
+    Log To Console    O Resultado da soma embutida é: ${RESULTADO_SOMA}
+    ${RESULTADO_SOMA}    Somar os números "55" e "45"
+    Log To Console    O Resultado da soma embutida é: ${RESULTADO_SOMA}
+
+*** Keywords ***
+KW para executar no Setup da Suite
+    Log To Console    Essa KW foi executada antes de começar a Suite !
+
+KW para executar no Setup de cada Teste
+    Log To Console    Essa KW foi executada antes de começar esse teste!
+
+KW para executar no Teardown da Suite
+    Log To Console    Essa KW foi executada ao final da Suite !
+
+KW para executar no Teardown de cada Teste
+    Log To Console    Essa KW foi executada ao final de cada teste !
+
+Somar dois números
+    [Arguments]        ${NUM_A}    ${NUM_B}
+    Log To Console     ${\n}Estou somando os números: ${NUM_A}+${NUM_B}
+    ${RESULTADO}       Evaluate    ${NUM_A}+${NUM_B}
+    Log To Console     O resultado é: ${RESULTADO}
+    [Return]           ${RESULTADO}
+
+Somar os números "${NUM_A}" e "${NUM_B}"
+    Log To Console     ${\n}Estou somando os números embutidos: ${NUM_A}+${NUM_B}
+    ${RESULTADO}       Evaluate    ${NUM_A}+${NUM_B}
+    Log To Console     O resultado embutido é: ${RESULTADO}
+    [Return]           ${RESULTADO}
+
